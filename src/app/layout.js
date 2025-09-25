@@ -1,5 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
+import { products } from "./products/products";
+import styles from './layout.modules.css';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,11 +20,38 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  return (
+ return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <header className={styles.header}>
+          <ul className={styles.topLevel}>
+            <li className={styles.li}>
+              <Link href="/about">About</Link>
+              <ul>
+                <li className={styles.li}>
+                  <Link href="/about/products">Our Products</Link>
+                </li>
+                <li className={styles.li}>
+                  <Link href="/about/us">Us</Link>
+                </li>
+              </ul>
+            </li>
+            <li className={styles.li}>
+              <Link href="/products">Products list</Link>
+              <ul>
+                {products.map((product) => (
+                  <li className={styles.li} key={product.id}>
+                    <Link href={`/products/${product.id}`}>
+                      {product.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          </ul>
+        </header>
         {children}
-      </body>
+        </body>
     </html>
   );
 }

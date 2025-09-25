@@ -1,0 +1,15 @@
+.header {
+    border-bottom: 1 rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.topLevel {
+    display: flex;
+    & > li {
+        display: block;
+    }
+}
+.li {
+    font-size: 0.9em;
+}
